@@ -1,3 +1,6 @@
+###
+Version 1.0.1
+###
 class BreakpointDetectionSubject
 
   CALLBACKS: []
@@ -22,8 +25,9 @@ BreakpointDetection = new BreakpointDetectionSubject()
 
 $(document).ready ->
 
-  # Add breakpoint element to body
+  # Add breakpoint element to body, with position as certain browsers require it in order to return z-index.
   $breakpoint_element = $('<div id="breakpoint_element"></div>')
+  $breakpoint_element.css 'position', 'relative'
   $('body').append $breakpoint_element
 
   # What is initial breakpoint
