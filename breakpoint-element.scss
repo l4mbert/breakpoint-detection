@@ -1,0 +1,43 @@
+//*
+//  STRIP UNITS FROM A VALUE
+//  Removes the unit type back to a bare integer
+//*
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+//*
+// BREAKPOINT FUNCTIONS
+// Added here in case you don't already have them.
+//*
+@mixin respond-to($size){
+  @media only screen and (min-width: $size) { @content; }
+}
+@mixin respond-to-less-than($size){
+  @media only screen and (max-width: $size) { @content; }
+}
+@mixin respond-between($lower, $upper){
+  @media only screen and (min-width: $lower) and (max-width: $upper) { @content; }
+}
+@mixin respond-to-retina($size){
+  @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) { @content; }
+}
+
+//*
+// BREAKPOINTS
+//*
+$large: 84em;
+$default: 68em;
+$intermediate: 50em;
+$small: 39em;
+
+//*
+// JAVASCRIPT BREAKPOINT ELEMENT
+//*
+#breakpoint_element {
+  position: relative; z-index: strip-units($default); // Webkit will not allow z-index to be returned to JS unless positioned
+}
+@include respond-to($large) { #breakpoint_element { z-index: strip-units($large); } }
+@include respond-to-less-than($default) { #breakpoint_element { z-index: (strip-units($default) - 1); } }
+@include respond-to-less-than($intermediate) { #breakpoint_element { z-index: (strip-units($intermediate) - 1); } }
+@include respond-to-less-than($small) { #breakpoint_element { z-index: (strip-units($small) - 1); } }
