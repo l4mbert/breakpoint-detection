@@ -1,0 +1,25 @@
+#breakpoint_element {
+  position: relative;
+  z-index: 68;
+}
+
+@media only screen and (min-width: 84em) {
+  #breakpoint_element {
+    z-index: 84;
+  }
+}
+@media only screen and (max-width: 68em) {
+  #breakpoint_element {
+    z-index: 67;
+  }
+}
+@media only screen and (max-width: 50em) {
+  #breakpoint_element {
+    z-index: 49;
+  }
+}
+@media only screen and (max-width: 39em) {
+  #breakpoint_element {
+    z-index: 38;
+  }
+}
